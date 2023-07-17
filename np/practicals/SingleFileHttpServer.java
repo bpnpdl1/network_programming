@@ -12,11 +12,11 @@ package np.practicals;
 
  import java.net.*;
  import java.io.*;
- import java.util.*;
  
  public class SingleFileHttpServer extends Thread {
  
    private byte[] content;
+   
    private byte[] header;
    private int port = 80;
  
@@ -88,45 +88,30 @@ package np.practicals;
    } // end run
  
  
-   public static void main(String[] args) {
- 
-     try {
-         
-       String contentType = "text/plain";
-       if (args[0].endsWith(".html") || args[0].endsWith(".htm")) {
-         contentType = "text/html";
-       }
-       
-       InputStream in = new FileInputStream(args[0]);
-       ByteArrayOutputStream out = new ByteArrayOutputStream();
-       int b;
-       while ((b = in.read()) != -1) out.write(b);
-       byte[] data = out.toByteArray();
-         
-       // set the port to listen on
-       int port;
-       try {
-         port = Integer.parseInt(args[1]);
-         if (port < 1 || port > 65535) port = 80;
-       }  
-       catch (Exception e) {
-         port = 80;
-       }  
-       
-       String encoding = "ASCII";
-   if (args.length >= 2) encoding = args[2]; 
-    
-   Thread t = new SingleFileHttpServer(data, encoding,
-    contentType, port);
-   t.start();         
- }
- catch (ArrayIndexOutOfBoundsException e) {
-   System.out.println(
-    "Usage: java SingleFileHTTPServer filename port encoding");
- }
- catch (Exception e) {
-   System.err.println(e);
- }
-   }
- 
+  public static void main(String[] args) {
+    try {
+        String contentType = "text/plain";
+        String filePath = "E:\\Software setup files\\NP practicals\\src\\np\\practicals/myfile.html"; // Replace with the actual file path
+        String encoding = "ASCII";
+        int port = 90;
+
+        if (filePath.endsWith(".html") || filePath.endsWith(".htm")) {
+            contentType = "text/html";
+        }
+
+        InputStream in = new FileInputStream(filePath);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int b;
+        while ((b = in.read()) != -1) {
+            out.write(b);
+        }
+        byte[] data = out.toByteArray();
+
+        Thread t = new SingleFileHttpServer(data, encoding, contentType, port);
+        t.start();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
  }

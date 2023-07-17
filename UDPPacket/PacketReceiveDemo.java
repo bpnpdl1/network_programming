@@ -10,9 +10,8 @@ package UDPPacket;
  */
 
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
+import java.io.*;
+import java.net.*;
 
 public class PacketReceiveDemo {
     public static void main(String[] args) throws IOException {

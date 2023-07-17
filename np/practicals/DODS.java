@@ -6,7 +6,6 @@ package np.practicals;
 Do an open directory search
 
 */
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,7 +15,7 @@ import java.net.URL;
 public class DODS {
     public static void main(String[] args) {
         String dmozUrl = "https://google.com"; // Replace with the desired Dmoz URL
-        
+
         try {
             URL url = new URL(dmozUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

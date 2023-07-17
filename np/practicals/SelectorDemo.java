@@ -11,10 +11,9 @@ package np.practicals;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
+import java.nio.*;
 import java.nio.channels.*;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class SelectorDemo {
     public static void main(String[] args) throws IOException {
@@ -25,7 +24,7 @@ public class SelectorDemo {
         Selector selector = Selector.open();
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
-        System.out.println("Server started on port 8080");
+        System.out.println("Server started on port 8030");
 
         while (true) {
             int readyChannels = selector.select();
@@ -79,4 +78,3 @@ public class SelectorDemo {
         buffer.clear();
     }
 }
-
